@@ -5,7 +5,7 @@ WORKDIR /app
 
 COPY package.json bun.lock* ./
 
-# use ignore-scripts to avoid building node modules like better-sqlite3 --ignore-scripts
+# use ignore-scripts to avoid building node modules like better-sqlite3
 RUN bun install --frozen-lockfile --ignore-scripts
 
 # Copy the entire project
@@ -14,16 +14,12 @@ COPY . .
 RUN bun --bun run build
 
 # copy production dependencies and source code into final image
-FROM node:24.11.1-alpine3.23
+FROM oven/bun:1.3.4-alpine AS production
 WORKDIR /app
 
 # Only `.output` folder is needed from the build stage
-COPY --from=build /app/.output/ ./
+COPY --from=build /app/.output /app
 
-# Change the port and host
-ENV PORT=80
-ENV HOST=0.0.0.0
-
-EXPOSE 80
-
-CMD ["node", "/app/server/index.mjs"]
+# run the app
+EXPOSE 3000/tcp
+ENTRYPOINT [ "bun", "--bun", "run", "/app/server/index.mjs" ]
