@@ -17,9 +17,12 @@ export default defineNuxtConfig({
   nitro: {
     preset: 'bun'
   },
-  content: {
-    preview: {
-      api: 'https://api.nuxt.studio'
+  studio: {
+    repository: {
+      provider: 'github',
+      owner: 'ngannochka',
+      repo: 'sib-balance-nuxt',
+      branch: 'main',
     }
   }
 })
