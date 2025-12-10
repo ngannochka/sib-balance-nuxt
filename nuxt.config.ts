@@ -14,4 +14,7 @@ export default defineNuxtConfig({
     captchaServerKey: process.env.CAPTCHA_SERVER_KEY,
     bitrixLeadAddUrl: process.env.BITRIX_LEAD_ADD_URL
   },
+  nitro: {
+    preset: 'bun'
+  }
 })
