@@ -8,7 +8,7 @@ defineProps<{
   <UHeader>
     <template #title>
       <NuxtLink to="/">
-        <NuxtImg src="/header/header-logo.svg" alt="Логотип компании Sib Balance" class="h-9" />
+        <img src="/header/header-logo.svg" alt="Логотип компании Sib Balance" class="h-9" />
       </NuxtLink>
     </template>
 

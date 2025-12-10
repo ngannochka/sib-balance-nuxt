@@ -53,7 +53,7 @@ defineProps<{
     <template #top>
       <UContainer class="flex justify-center">
         <NuxtLink to="/">
-          <NuxtImg src="/footer/footer-logo.svg" class="h-9" />
+          <img src="/footer/footer-logo.svg" class="h-9" />
         </NuxtLink>
       </UContainer>
     </template>
