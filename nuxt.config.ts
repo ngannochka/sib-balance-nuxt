@@ -16,5 +16,10 @@ export default defineNuxtConfig({
   },
   nitro: {
     preset: 'bun'
+  },
+  content: {
+    preview: {
+      api: 'https://api.nuxt.studio'
+    }
   }
 })
