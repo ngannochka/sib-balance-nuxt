@@ -12,7 +12,9 @@ export default defineNuxtConfig({
       captchaClientKey: process.env.NUXT_PUBLIC_CAPTCHA_CLIENT_KEY,
     },
     captchaServerKey: process.env.CAPTCHA_SERVER_KEY,
-    bitrixLeadAddUrl: process.env.BITRIX_LEAD_ADD_URL
+    bitrixLeadAddUrl: process.env.BITRIX_LEAD_ADD_URL,
+    studioGithubClientId: process.env.STUDIO_GITHUB_CLIENT_ID,
+    studioGithubClientSecret: process.env.STUDIO_GITHUB_CLIENT_SECRET,
   },
   nitro: {
     preset: 'bun'
