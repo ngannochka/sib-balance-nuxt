@@ -9,3 +9,8 @@
   --font-sans: 'Inter', sans-serif;
   --font-serif: 'Unbounded', sans-serif;
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
