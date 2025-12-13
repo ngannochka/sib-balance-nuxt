@@ -1,7 +1,16 @@
 <script setup lang="ts">
-defineProps<{
+interface Header {
+  id?: number
   callbackButton?: string
-}>()
+}
+
+const { getSingletonItem } = useDirectusItems()
+
+const { data } = await useAsyncData('sibbalance_header', () => {
+  return getSingletonItem<Header>({
+    collection: 'sibbalance_header'
+  })
+})
 </script>
 
 <template>
@@ -18,13 +27,13 @@ defineProps<{
       <NavigationMenu />
 
       <UButton to="#contact-us">
-        {{ callbackButton }}
+        {{ data?.callbackButton }}
       </UButton>
     </template>
 
     <template #right>
       <UButton to="#contact-us" class="hidden lg:flex">
-        {{ callbackButton }}
+        {{ data?.callbackButton }}
       </UButton>
     </template>
   </UHeader>

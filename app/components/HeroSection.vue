@@ -1,21 +1,30 @@
 <script setup lang="ts">
 import { OmbreVapor2 } from '@ombre-ui/vue'
 
-defineProps<{
+interface Hero {
+  id?: number
   title?: string
   description?: string
-  links?: {
-    label: string
-    to: string
-  }[]
-}>()
+  callbackButton?: string
+}
+
+const { getSingletonItem } = useDirectusItems()
+
+const { data } = await useAsyncData('sibbalance_hero', () => {
+  return getSingletonItem<Hero>({
+    collection: 'sibbalance_hero'
+  })
+})
 </script>
 
 <template>
   <UPageHero
-    :title="title"
-    :description="description"
-    :links="links"
+    :title="data?.title"
+    :description="data?.description"
+    :links="[{
+      label: data?.callbackButton,
+      to: '#contact-us'
+    }]"
   >
     <OmbreVapor2 color-a="#28445C" color-b="#53CBCF" class="-z-10" />
   </UPageHero>

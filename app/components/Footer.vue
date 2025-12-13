@@ -1,8 +1,22 @@
 <script setup lang="ts">
-defineProps<{
+// defineProps<{
+//   email?: string
+//   phone?: string
+// }>()
+
+interface Footer {
+  id?: number
   email?: string
   phone?: string
-}>()
+}
+
+const { getSingletonItem } = useDirectusItems()
+
+const { data: footer } = await useAsyncData('sibbalance_footer', () => {
+  return getSingletonItem<Footer>({
+    collection: 'sibbalance_footer',
+  })
+})
 </script>
 
 <template>
@@ -25,28 +39,28 @@ defineProps<{
         icon="i-lucide-mail"
         color="neutral"
         variant="ghost"
-        :to="`mailto:${email}`"
+        :to="`mailto:${footer?.email}`"
         aria-label="Почта"
         :ui="{
           base: 'text-white',
           leadingIcon: 'text-white size-4'
         }"
       >
-        {{ email }}
+        {{ footer?.email }}
       </UButton>
 
       <UButton
         icon="i-lucide-phone"
         color="neutral"
         variant="ghost"
-        :to="`tel:${phone}`"
+        :to="`tel:${footer?.phone}`"
         aria-label="Номер телефона"
         :ui="{
           base: 'text-white',
           leadingIcon: 'text-white size-4'
         }"
       >
-        {{ phone }}
+        {{ footer?.phone }}
       </UButton>
     </template>
 
