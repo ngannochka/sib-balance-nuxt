@@ -47,7 +47,7 @@ const {
       <UBlogPost
         v-for="({ image, date, title, description }, index) in visiblePosts"
         :key="index"
-        :image="getThumbnail(image!)"
+        :image="`https://cms.sibbalance.ru/assets/${image}`"
         :title
         :description
         variant="soft"

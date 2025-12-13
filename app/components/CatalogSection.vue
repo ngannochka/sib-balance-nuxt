@@ -53,7 +53,7 @@ const {
         variant="naked"
       >
         <template #header>
-          <NuxtImg :src="`${getThumbnail(image!)}`" :alt="title" class="rounded-lg" />
+          <NuxtImg :src="`https://cms.sibbalance.ru/assets/${image}`" :alt="title" class="rounded-lg" />
         </template>
 
         <template #leading>
