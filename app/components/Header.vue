@@ -6,7 +6,7 @@ interface Header {
 
 const { getSingletonItem } = useDirectusItems()
 
-const { data } = await useAsyncData('sibbalance_header', () => {
+const { data: header } = await useAsyncData('sibbalance_header', () => {
   return getSingletonItem<Header>({
     collection: 'sibbalance_header'
   })
@@ -17,7 +17,7 @@ const { data } = await useAsyncData('sibbalance_header', () => {
   <UHeader>
     <template #title>
       <NuxtLink to="/">
-        <img src="/header/header-logo.svg" alt="Логотип компании Sib Balance" class="h-9" />
+        <img src="/header/logo.svg" alt="Логотип компании Sib Balance" class="h-9" />
       </NuxtLink>
     </template>
 
@@ -27,13 +27,13 @@ const { data } = await useAsyncData('sibbalance_header', () => {
       <NavigationMenu />
 
       <UButton to="#contact-us">
-        {{ data?.callbackButton }}
+        {{ header?.callbackButton }}
       </UButton>
     </template>
 
     <template #right>
       <UButton to="#contact-us" class="hidden lg:flex">
-        {{ data?.callbackButton }}
+        {{ header?.callbackButton }}
       </UButton>
     </template>
   </UHeader>

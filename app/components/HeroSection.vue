@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { OmbreVapor2 } from '@ombre-ui/vue'
 
-interface Hero {
+interface HeroSection {
   id?: number
   title?: string
   description?: string
@@ -10,8 +10,8 @@ interface Hero {
 
 const { getSingletonItem } = useDirectusItems()
 
-const { data } = await useAsyncData('sibbalance_hero', () => {
-  return getSingletonItem<Hero>({
+const { data: heroSection } = await useAsyncData('sibbalance_hero', () => {
+  return getSingletonItem<HeroSection>({
     collection: 'sibbalance_hero'
   })
 })
@@ -19,10 +19,10 @@ const { data } = await useAsyncData('sibbalance_hero', () => {
 
 <template>
   <UPageHero
-    :title="data?.title"
-    :description="data?.description"
+    :title="heroSection?.title"
+    :description="heroSection?.description"
     :links="[{
-      label: data?.callbackButton,
+      label: heroSection?.callbackButton,
       to: '#contact-us'
     }]"
   >

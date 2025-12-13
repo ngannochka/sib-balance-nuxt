@@ -1,5 +1,12 @@
 <script setup lang="ts">
-interface Product {
+interface CatalogSection {
+  id?: number
+  title?: string
+  showMoreButton?: string
+  callbackButton?: string
+}
+
+interface ProductCard {
   id?: number
   image?: string
   price?: string
@@ -7,24 +14,17 @@ interface Product {
   description?: string
 }
 
-interface Catalog {
-  id?: number
-  title?: string
-  showMoreButton?: string
-  callbackButton?: string
-}
-
 const { getSingletonItem, getItems } = useDirectusItems()
 const { getThumbnail } = useDirectusFiles()
 
 const { data: catalogSection } = await useAsyncData('sibbalance_catalog', () => {
-  return getSingletonItem<Catalog>({
+  return getSingletonItem<CatalogSection>({
     collection: 'sibbalance_catalog',
   })
 })
 
-const { data: products } = await useAsyncData('sibbalance_product', () => {
-  return getItems<Product>({
+const { data: products } = await useAsyncData('sibbalance_products', () => {
+  return getItems<ProductCard>({
     collection: 'sibbalance_product',
   })
 })
@@ -59,7 +59,7 @@ const {
         <template #leading>
           {{ price }}
 
-          <UIcon name="i-lucide-russian-ruble" class="size-4"/>
+          <UIcon name="i-lucide-russian-ruble" class="size-4" />
         </template>
 
         <template #footer>

@@ -22,7 +22,7 @@ const { data: blogSection } = await useAsyncData('sibbalance_blog', () => {
   })
 })
 
-const { data: posts } = await useAsyncData('sibbalance_post', () => {
+const { data: posts } = await useAsyncData('sibbalance_posts', () => {
   return getItems<Post>({
     collection: 'sibbalance_post',
   })

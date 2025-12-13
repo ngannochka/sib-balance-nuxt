@@ -1,9 +1,4 @@
 <script setup lang="ts">
-// defineProps<{
-//   email?: string
-//   phone?: string
-// }>()
-
 interface Footer {
   id?: number
   email?: string
@@ -67,7 +62,7 @@ const { data: footer } = await useAsyncData('sibbalance_footer', () => {
     <template #top>
       <UContainer class="flex justify-center">
         <NuxtLink to="/">
-          <img src="/footer/footer-logo.svg" class="h-9" />
+          <img src="/footer/logo.svg" class="h-9" />
         </NuxtLink>
       </UContainer>
     </template>

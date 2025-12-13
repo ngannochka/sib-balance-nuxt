@@ -1,5 +1,4 @@
 <script setup lang="ts">
-
 interface AboutSection {
   id?: number
   title?: string

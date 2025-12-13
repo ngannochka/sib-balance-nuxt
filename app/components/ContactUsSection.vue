@@ -5,11 +5,6 @@ import { z } from 'zod'
 import { vMaska } from 'maska/vue'
 import { YandexSmartCaptcha } from '@gladesinger/vue3-yandex-smartcaptcha'
 
-defineProps<{
-  title?: string
-  submitButton?: string
-}>()
-
 const config = useRuntimeConfig()
 
 const captchaClientKey = config.public.captchaClientKey
