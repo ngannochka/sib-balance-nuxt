@@ -14,6 +14,20 @@ const config = useRuntimeConfig()
 
 const captchaClientKey = config.public.captchaClientKey
 
+interface ContactUsSection {
+  id?: number
+  title?: string
+  submitButton?: string
+}
+
+const { getSingletonItem } = useDirectusItems()
+
+const { data: contactUsSection } = await useAsyncData('sibbalance_contact_us', () => {
+  return getSingletonItem<ContactUsSection>({
+    collection: 'sibbalance_contact_us',
+  })
+})
+
 const schema = z.object({
   name: z.string('Введите имя').min(2, 'Минимум 2 символа'),
   email: z.email({
@@ -83,7 +97,7 @@ const handleFormSubmit = async (event: FormSubmitEvent<Schema>) => {
 <template>
   <UPageSection
     id="contact-us"
-    :title="title"
+    :title="contactUsSection?.title"
     :ui="{
       root: 'md:bg-[url(/contactUs/bgi.png)]'
     }"
@@ -127,7 +141,7 @@ const handleFormSubmit = async (event: FormSubmitEvent<Schema>) => {
         class="self-center"
         :disabled="isSubmitDisabled"
       >
-        {{ submitButton }}
+        {{ contactUsSection?.submitButton }}
       </UButton>
     </UForm>
   </UPageSection>
