@@ -17,7 +17,7 @@ const { data: header } = await useAsyncData('sibbalance_header', () => {
   <UHeader>
     <template #title>
       <NuxtLink to="/">
-        <img src="/header/logo.svg" alt="Логотип компании Sib Balance" class="h-9" />
+        <img src="/header/header-logo.svg" alt="Логотип компании Sib Balance" class="h-9" />
       </NuxtLink>
     </template>
 
