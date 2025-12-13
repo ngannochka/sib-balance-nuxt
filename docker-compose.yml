@@ -1,71 +1,121 @@
+# DB STACK
+#services:
+#  database:
+#    image: postgis/postgis:13-master
+#    volumes:
+#      - postgres_data:/var/lib/postgresql/data
+#    environment:
+#      POSTGRES_USER: "directus"
+#      POSTGRES_PASSWORD: "directus"
+#      POSTGRES_DB: "directus"
+#    networks:
+#      - apps
+#    deploy:
+#      restart_policy:
+#        condition: on-failure
+#
+#  cache:
+#    image: redis:6
+#    networks:
+#      - apps
+#    deploy:
+#      restart_policy:
+#        condition: on-failure
+#
+#volumes:
+#  postgres_data:
+#    external: true
+#
+#networks:
+#  apps:
+#    external: true
+
+# DIRECTUS STACK
+#services:
+#  directus:
+#    image: directus/directus:latest
+#    volumes:
+#      - directus_data:/directus/uploads
+#      - directus_data:/directus/extensions
+#    environment:
+#      SECRET: ${SECRET}
+#      DB_CLIENT: "pg"
+#      DB_HOST: "database"
+#      DB_PORT: "5432"
+#      DB_DATABASE: "directus"
+#      DB_USER: "directus"
+#      DB_PASSWORD: "directus"
+#      CACHE_ENABLED: "true"
+#      CACHE_AUTO_PURGE: "true"
+#      CACHE_STORE: "redis"
+#      REDIS: "redis://cache:6379"
+#      ADMIN_EMAIL: ${ADMIN_EMAIL}
+#      ADMIN_PASSWORD: ${ADMIN_PASSWORD}
+#      PUBLIC_URL: "https://cms.sibbalance.ru"
+#    networks:
+#      - apps
+#    deploy:
+#      restart_policy:
+#        condition: on-failure
+#
+#volumes:
+#  directus_data:
+#    external: true
+#
+#networks:
+#  apps:
+#    external: true
+
+# CADDY STACK
+#services:
+#  caddy:
+#    image: caddy:2.10.2-alpine
+#    ports:
+#      - target: 80
+#        published: 80
+#        protocol: tcp
+#      - target: 443
+#        published: 443
+#        protocol: tcp
+#      - target: 443
+#        published: 443
+#        protocol: udp
+#    volumes:
+#      - caddy_data:/data
+#    configs:
+#      - source: caddyfile
+#        target: /etc/caddy/Caddyfile
+#    networks:
+#      - apps
+#    deploy:
+#      restart_policy:
+#        condition: on-failure
+#
+#volumes:
+#  caddy_data:
+#    external: true
+#
+#networks:
+#  apps:
+#    external: true
+#
+#configs:
+#  caddyfile:
+#    name: Caddyfile_v1
+#    external: true
+
+# SIB BALANCE STACK
 services:
-  database:
-    image: postgis/postgis:13-master
-    volumes:
-      - postgres-data:/var/lib/postgresql/data
+  sibbalance:
+    image: ghcr.io/ngannochka/sib-balance-nuxt:latest
     environment:
-      POSTGRES_USER: "directus"
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_DB: "directus"
-    healthcheck:
-      test: ["CMD", "pg_isready", "--host=localhost", "--username=directus"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-      start_interval: 5s
-      start_period: 30s
-    deploy:
-      restart_policy:
-        condition: on-failure
-
-  cache:
-    image: redis:6
-    healthcheck:
-      test: ["CMD-SHELL", "[ $$(redis-cli ping) = 'PONG' ]"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-      start_interval: 5s
-      start_period: 30s
-    deploy:
-      restart_policy:
-        condition: on-failure
-
-  directus:
-    image: directus/directus:latest
-    ports:
-      - 8055:8055
-    volumes:
-      - directus-data:/directus/uploads
-      - directus-data:/directus/extensions
-    environment:
-      SECRET: ${SECRET}
-
-      DB_CLIENT: "pg"
-      DB_HOST: "database"
-      DB_PORT: "5432"
-      DB_DATABASE: "directus"
-      DB_USER: "directus"
-      DB_PASSWORD: ${POSTGRES_PASSWORD}
-
-      CACHE_ENABLED: "true"
-      CACHE_AUTO_PURGE: "true"
-      CACHE_STORE: "redis"
-      REDIS: "redis://cache:6379"
-
-      ADMIN_EMAIL: ${ADMIN_EMAIL}
-      ADMIN_PASSWORD: ${ADMIN_PASSWORD}
-
-      PUBLIC_URL: ${PUBLIC_URL}
-
-    deploy:
-      restart_policy:
-        condition: on-failure
-
-volumes:
-  postgres-data:
-  directus-data:
+      NUXT_PUBLIC_DIRECTUS_URL: ${NUXT_PUBLIC_DIRECTUS_URL}
+      NUXT_PUBLIC_CAPTCHA_CLIENT_KEY: ${NUXT_PUBLIC_CAPTCHA_CLIENT_KEY}
+      CAPTCHA_SERVER_KEY: ${CAPTCHA_SERVER_KEY}
+      BITRIX_LEAD_ADD_URL: ${BITRIX_LEAD_ADD_URL}
+    networks:
+      - apps
 
 networks:
-  app:
-    driver: overlay
+  apps:
+    external: true

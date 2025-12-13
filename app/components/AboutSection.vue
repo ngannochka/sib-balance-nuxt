@@ -7,9 +7,9 @@ interface AboutSection {
 
 interface PhilosophyCard {
   id?: number
+  icon?: string
   title?: string
-  showMoreButton?: string
-  callbackButton?: string
+  description?: string
 }
 
 const { getSingletonItem, getItems } = useDirectusItems()

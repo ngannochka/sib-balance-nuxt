@@ -1,16 +1,16 @@
 <script setup lang="ts">
+interface BlogSection {
+  id?: number
+  title?: string
+  showMoreButton?: string
+}
+
 interface Post {
   id?: number
   image?: string
   date?: string
   title?: string
   description?: string
-}
-
-interface BlogSection {
-  id?: number
-  title?: string
-  showMoreButton?: string
 }
 
 const { getSingletonItem, getItems } = useDirectusItems()
