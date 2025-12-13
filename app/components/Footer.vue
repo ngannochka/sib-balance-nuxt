@@ -62,7 +62,7 @@ const { data: footer } = await useAsyncData('sibbalance_footer', () => {
     <template #top>
       <UContainer class="flex justify-center">
         <NuxtLink to="/">
-          <img src="/footer/logo.svg" class="h-9" />
+          <NuxtImg src="/footer/logo.svg" alt="Логотип компании Sib Balance" class="h-9" />
         </NuxtLink>
       </UContainer>
     </template>
