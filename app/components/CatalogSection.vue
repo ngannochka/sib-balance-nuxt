@@ -15,7 +15,6 @@ interface ProductCard {
 }
 
 const { getSingletonItem, getItems } = useDirectusItems()
-const { getThumbnail } = useDirectusFiles()
 
 const { data: catalogSection } = await useAsyncData('sibbalance_catalog', () => {
   return getSingletonItem<CatalogSection>({

@@ -104,9 +104,8 @@
 #    name: Caddyfile_v1
 #    external: true
 
-# SIB BALANCE STACK
 services:
-  sibbalance:
+  sib-balance:
     image: ghcr.io/ngannochka/sib-balance-nuxt:latest
     environment:
       NUXT_PUBLIC_DIRECTUS_URL: ${NUXT_PUBLIC_DIRECTUS_URL}

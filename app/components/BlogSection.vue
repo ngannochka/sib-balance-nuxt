@@ -14,7 +14,6 @@ interface Post {
 }
 
 const { getSingletonItem, getItems } = useDirectusItems()
-const { getThumbnail } = useDirectusFiles()
 
 const { data: blogSection } = await useAsyncData('sibbalance_blog', () => {
   return getSingletonItem<BlogSection>({
