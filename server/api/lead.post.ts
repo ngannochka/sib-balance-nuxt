@@ -1,9 +1,10 @@
 import { z } from 'zod'
 
-const config = useRuntimeConfig()
+const captchaServerKey = process.env.CAPTCHA_SERVER_KEY
+const bitrixLeadAddUrl = process.env.BITRIX_LEAD_ADD_URL
 
-const captchaServerKey = config.captchaServerKey
-const bitrixLeadAddUrl = config.bitrixLeadAddUrl
+if (!captchaServerKey || !bitrixLeadAddUrl)
+  throw new Error('Не указаны переменные окружения')
 
 const captchaSuccessSchema = z.object({
   status: z.literal('ok'),
