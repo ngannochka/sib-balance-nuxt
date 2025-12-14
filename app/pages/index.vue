@@ -11,7 +11,8 @@ useSeoMeta({
   ogTitle: 'Sib Balance',
   ogDescription: 'Sib Balance — сибирский бренд натуральных продуктов для поддержки здоровья и восстановления организма по строгим стандартам GMP.',
   ogImage: '/ogImage.png',
-  ogUrl: 'https://sibbalance.ru/'
+  ogUrl: 'https://sibbalance.ru/',
+  titleTemplate: '%s'
 })
 </script>
 

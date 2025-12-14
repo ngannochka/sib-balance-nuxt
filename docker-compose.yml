@@ -114,6 +114,9 @@ services:
       BITRIX_LEAD_ADD_URL: ${BITRIX_LEAD_ADD_URL}
     networks:
       - apps
+    deploy:
+      restart_policy:
+        condition: on-failure
 
 networks:
   apps:
